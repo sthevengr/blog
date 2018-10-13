@@ -1,9 +1,28 @@
 class ArticulosController < ApplicationController
+  
+  
+  def create
+  @articulo = Articulo.new(articulo_params)
+ 
+  @articulo.save
+  redirect_to @articulo
+end
+ 
+  def show
+    @articulo =Articulo.find(params[:id])
+  end
+  
   def new
   end
   
-  def create
-    render plain: params[:articulo].inspect
+  
+private
+  def articulo_params
+    params.require(:articulo).permit(:titular, :contenido)
   end
+ 
+ 
+  
+  
 end
   
